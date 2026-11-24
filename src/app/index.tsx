@@ -1,6 +1,7 @@
 import { Image } from "expo-image";
-import { Text, View, StyleSheet, ScrollView, FlatList } from "react-native";
+import { Text, View, StyleSheet, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { FlashList } from "@shopify/flash-list";
 
 import Cart from "../../components/shop/Cart";
 import Title from "../../components/shop/Title";
@@ -39,7 +40,7 @@ export default function Index() {
           ))}
         </ScrollView> */}
         {/* Flat list */}
-        <FlatList
+        <FlashList
           data={categories}
           renderItem={({ item }) => <Category {...item} />}
           keyExtractor={(item) => item.id.toString()}
