@@ -1,5 +1,12 @@
 import { Image } from "expo-image";
-import { Text, View, StyleSheet, ScrollView, FlatList } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  ScrollView,
+  FlatList,
+  Dimensions,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FlashList } from "@shopify/flash-list";
 import { useCallback, useState } from "react";
@@ -17,6 +24,8 @@ const blurhash =
 
 export default function Index() {
   const [select, setSelect] = useState(1);
+  const width = Dimensions.get("screen").width;
+  const numColumns = width < 600 ? 2 : width < 768 ? 3 : 4;
 
   const handleSelect = useCallback((id: number) => {
     setSelect(id);
@@ -65,7 +74,7 @@ export default function Index() {
         <FlatList
           data={products}
           renderItem={({ item }) => <Product {...item} />}
-          numColumns={2}
+          numColumns={numColumns}
           keyExtractor={(item) => item.id.toString()}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingVertical: 10 }}
