@@ -43,43 +43,49 @@ export default function Index() {
         />
         <Cart />
       </View>
-      <Image
-        style={styles.banner}
-        source={require("../../data/shop/banner6.png")}
-        placeholder={{ blurhash }}
-        contentFit="cover"
-        transition={1000}
-      />
-      <View style={{ paddingHorizontal: 15 }}>
-        <Title title="Shop By Category" btnText="See All"></Title>
-        {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+
+      <FlatList
+        ListHeaderComponent={() => (
+          <>
+            <Image
+              style={styles.banner}
+              source={require("../../data/shop/banner6.png")}
+              placeholder={{ blurhash }}
+              contentFit="cover"
+              transition={1000}
+            />
+            <View style={{ paddingHorizontal: 15 }}>
+              <Title title="Shop By Category" btnText="See All"></Title>
+              {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {categories.map((category) => (
             <Category key={category.id} {...category} />
           ))}
         </ScrollView> */}
-        {/* Flat list */}
-        <FlashList
-          data={categories}
-          renderItem={({ item }) => (
-            <Category {...item} select={select} onSelect={handleSelect} />
-          )}
-          keyExtractor={(item) => item.id.toString()}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingVertical: 10 }}
-          extraData={select} // if select is changed,rerender items (for active category) .or  index state is changed and if select is not changed, items will not rerender.
-        />
+              {/* Flat list */}
+              <FlashList
+                data={categories}
+                renderItem={({ item }) => (
+                  <Category {...item} select={select} onSelect={handleSelect} />
+                )}
+                keyExtractor={(item) => item.id.toString()}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{ paddingVertical: 10 }}
+                extraData={select} // if select is changed,rerender items (for active category) .or  index state is changed and if select is not changed, items will not rerender.
+              />
 
-        <Title title="Recommended For You" btnText="See All"></Title>
-        <FlatList
-          data={products}
-          renderItem={({ item }) => <Product {...item} />}
-          numColumns={numColumns}
-          keyExtractor={(item) => item.id.toString()}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingVertical: 10 }}
-        />
-      </View>
+              <Title title="Recommended For You" btnText="See All"></Title>
+            </View>
+          </>
+        )}
+        data={products}
+        renderItem={({ item }) => <Product {...item} />}
+        numColumns={numColumns}
+        keyExtractor={(item) => item.id.toString()}
+        showsVerticalScrollIndicator={false}
+        columnWrapperStyle={{ paddingHorizontal: 15 }}
+        // contentContainerStyle={{ paddingVertical: 10 }}
+      />
     </SafeAreaView>
   );
 }

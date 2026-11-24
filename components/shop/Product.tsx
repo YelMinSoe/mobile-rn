@@ -30,7 +30,6 @@ const Product = ({
         contentFit="cover"
         transition={1000}
       />
-      <Text>Product</Text>
     </Pressable>
   );
 };
@@ -40,6 +39,7 @@ export default Product;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginHorizontal: 7,
   },
   image: {
     width: "100%",
