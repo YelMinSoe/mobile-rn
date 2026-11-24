@@ -1,5 +1,5 @@
 import { Image } from "expo-image";
-import { Text, View, StyleSheet, ScrollView } from "react-native";
+import { Text, View, StyleSheet, ScrollView, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import Cart from "../../components/shop/Cart";
@@ -33,11 +33,20 @@ export default function Index() {
       />
       <View style={{ paddingHorizontal: 15 }}>
         <Title title="Shop By Category" btnText="See All"></Title>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {categories.map((category) => (
             <Category key={category.id} {...category} />
           ))}
-        </ScrollView>
+        </ScrollView> */}
+        {/* Flat list */}
+        <FlatList
+          data={categories}
+          renderItem={({ item }) => <Category {...item} />}
+          keyExtractor={(item) => item.id.toString()}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingVertical: 10 }}
+        />
 
         <Title title="Recommended For You" btnText="See All"></Title>
       </View>
