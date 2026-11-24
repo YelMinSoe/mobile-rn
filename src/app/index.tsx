@@ -4,6 +4,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import Cart from "../../components/shop/Cart";
 import Title from "../../components/shop/Title";
+import Category from "../../components/shop/Category";
+import { categories } from "../../data/index";
 
 // blurhash for image loading
 const blurhash =
@@ -11,7 +13,7 @@ const blurhash =
 
 export default function Index() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
         <Image
           style={styles.logo}
@@ -31,9 +33,10 @@ export default function Index() {
       />
       <View style={{ paddingHorizontal: 15 }}>
         <Title title="Shop By Category" btnText="See All"></Title>
+        <Category {...categories[0]} />
         <Title title="Recommended For You" btnText="See All"></Title>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 

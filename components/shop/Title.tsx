@@ -1,5 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
+
 // Types
 type TitleProps = {
   title: string;
@@ -9,6 +10,7 @@ const Title = ({ title, btnText }: TitleProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
+
       <Pressable>
         <Text style={styles.btnText}> {btnText} </Text>
       </Pressable>
