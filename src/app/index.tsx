@@ -2,6 +2,7 @@ import { Image } from "expo-image";
 import { Text, View, StyleSheet, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FlashList } from "@shopify/flash-list";
+import { useCallback, useState } from "react";
 
 import Cart from "../../components/shop/Cart";
 import Title from "../../components/shop/Title";
@@ -13,6 +14,12 @@ const blurhash =
   "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
 
 export default function Index() {
+  const [select, setSelect] = useState(1);
+
+  const handleSelect = useCallback((id: number) => {
+    setSelect(id);
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
@@ -42,11 +49,14 @@ export default function Index() {
         {/* Flat list */}
         <FlashList
           data={categories}
-          renderItem={({ item }) => <Category {...item} />}
+          renderItem={({ item }) => (
+            <Category {...item} select={select} onSelect={handleSelect} />
+          )}
           keyExtractor={(item) => item.id.toString()}
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{ paddingVertical: 10 }}
+          extraData={select} // if select is changed,rerender items (for active category) .or  index state is changed and if select is not changed, items will not rerender.
         />
 
         <Title title="Recommended For You" btnText="See All"></Title>
