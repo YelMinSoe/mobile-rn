@@ -3,6 +3,8 @@ import React from "react";
 
 import { ProductTypes } from "@/types";
 import { Image } from "expo-image";
+import { MaterialIcons } from "@expo/vector-icons";
+import { colors } from "../../data/index";
 
 // types
 interface ProductProps extends ProductTypes {}
@@ -30,6 +32,13 @@ const Product = ({
         contentFit="cover"
         transition={1000}
       />
+      <Pressable style={styles.heartContainer}>
+        <MaterialIcons
+          name={users.length > 0 ? "favorite" : "favorite-outline"}
+          size={24}
+          color="#E66F2D"
+        />
+      </Pressable>
     </Pressable>
   );
 };
@@ -45,5 +54,16 @@ const styles = StyleSheet.create({
     width: "100%",
     aspectRatio: 3 / 4,
     borderRadius: 5,
+  },
+  heartContainer: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: "#00000010",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    top: 10,
+    right: 10,
   },
 });
