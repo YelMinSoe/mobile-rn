@@ -7,7 +7,9 @@ import { useCallback, useState } from "react";
 import Cart from "../../components/shop/Cart";
 import Title from "../../components/shop/Title";
 import Category from "../../components/shop/Category";
-import { categories } from "../../data/index";
+import { categories, products } from "../../data/index";
+
+import Product from "@/components/shop/Product";
 
 // blurhash for image loading
 const blurhash =
@@ -60,6 +62,13 @@ export default function Index() {
         />
 
         <Title title="Recommended For You" btnText="See All"></Title>
+        <FlashList
+          data={products}
+          renderItem={({ item }) => <Product {...item} />}
+          keyExtractor={(item) => item.id.toString()}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingVertical: 10 }}
+        />
       </View>
     </SafeAreaView>
   );

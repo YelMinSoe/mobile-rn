@@ -2,14 +2,13 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { Image } from "expo-image";
 
+import { CategoryTypes } from "@/types";
+
 // Types
-type CategoryProps = {
-  id: number;
-  name: string;
-  image: any;
+interface CategoryProps extends CategoryTypes {
   select: number;
   onSelect: (id: number) => void;
-};
+}
 
 const blurhash =
   "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
