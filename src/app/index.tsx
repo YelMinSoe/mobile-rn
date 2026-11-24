@@ -1,5 +1,5 @@
 import { Image } from "expo-image";
-import { Text, View, StyleSheet, ScrollView } from "react-native";
+import { Text, View, StyleSheet, ScrollView, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FlashList } from "@shopify/flash-list";
 import { useCallback, useState } from "react";
@@ -62,9 +62,10 @@ export default function Index() {
         />
 
         <Title title="Recommended For You" btnText="See All"></Title>
-        <FlashList
+        <FlatList
           data={products}
           renderItem={({ item }) => <Product {...item} />}
+          numColumns={2}
           keyExtractor={(item) => item.id.toString()}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingVertical: 10 }}
