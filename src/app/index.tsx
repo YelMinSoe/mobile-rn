@@ -21,6 +21,13 @@ export default function Index() {
         />
         <Cart />
       </View>
+      <Image
+        style={styles.banner}
+        source={require("../../data/shop/banner6.png")}
+        placeholder={{ blurhash }}
+        contentFit="cover"
+        transition={1000}
+      />
     </View>
   );
 }
@@ -35,9 +42,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 15,
+    marginVertical: 7,
   },
   logo: {
     width: 50,
     height: 50,
+  },
+  banner: {
+    width: "100%",
+    aspectRatio: 20 / 9,
   },
 });
