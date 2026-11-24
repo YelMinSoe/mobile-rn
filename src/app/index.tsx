@@ -3,6 +3,7 @@ import { Text, View, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import Cart from "../../components/shop/Cart";
+import Title from "../../components/shop/Title";
 
 // blurhash for image loading
 const blurhash =
@@ -28,6 +29,10 @@ export default function Index() {
         contentFit="cover"
         transition={1000}
       />
+      <View style={{ paddingHorizontal: 15 }}>
+        <Title title="Shop By Category" btnText="See All"></Title>
+        <Title title="Recommended For You" btnText="See All"></Title>
+      </View>
     </View>
   );
 }
@@ -42,7 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 15,
-    marginVertical: 7,
+    marginVertical: 5,
   },
   logo: {
     width: 50,
