@@ -26,6 +26,7 @@ export default function Index() {
   const [select, setSelect] = useState(1);
   const width = Dimensions.get("screen").width;
   const numColumns = width < 600 ? 2 : width < 768 ? 3 : 4;
+  const itemWidth = width / numColumns - 30;
 
   const handleSelect = useCallback((id: number) => {
     setSelect(id);
@@ -79,11 +80,11 @@ export default function Index() {
           </>
         )}
         data={products}
-        renderItem={({ item }) => <Product {...item} />}
+        renderItem={({ item }) => <Product {...item} itemWidth={itemWidth} />}
         numColumns={numColumns}
         keyExtractor={(item) => item.id.toString()}
         showsVerticalScrollIndicator={false}
-        columnWrapperStyle={{ paddingHorizontal: 15 }}
+        columnWrapperStyle={{ paddingHorizontal: 15, paddingBottom: 20 }}
         // contentContainerStyle={{ paddingVertical: 10 }}
       />
     </SafeAreaView>
