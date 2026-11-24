@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Image } from "expo-image";
 
 // Types
@@ -12,10 +12,14 @@ type CategoryProps = {
 const blurhash =
   "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
 const Category = ({ id, name, image }: CategoryProps) => {
+  const [select, setSelect] = useState(false);
   return (
-    <Pressable style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPress={() => setSelect((prev) => !prev)}
+    >
       <Image
-        style={styles.image}
+        style={[styles.image, select && styles.seletct]}
         source={image}
         placeholder={{ blurhash }}
         contentFit="cover"
@@ -37,4 +41,9 @@ const styles = StyleSheet.create({
 
   image: { width: 56, height: 56 },
   caption: { fontSize: 12, fontWeight: "600" },
+  seletct: {
+    borderColor: "orange",
+    borderWidth: 2,
+    borderRadius: 28,
+  },
 });
