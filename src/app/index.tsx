@@ -6,6 +6,7 @@ import {
   ScrollView,
   FlatList,
   Dimensions,
+  Pressable,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FlashList } from "@shopify/flash-list";
@@ -44,49 +45,54 @@ export default function Index() {
         />
         <Cart />
       </View>
-
-      <FlatList
-        ListHeaderComponent={() => (
-          <>
-            <Image
-              style={styles.banner}
-              source={require("../../data/shop/banner6.png")}
-              placeholder={{ blurhash }}
-              contentFit="cover"
-              transition={1000}
-            />
-            <View style={{ paddingHorizontal: 15 }}>
-              <Title title="Shop By Category" btnText="See All"></Title>
-              {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Image
+          style={styles.banner}
+          source={require("../../data/shop/banner6.png")}
+          placeholder={{ blurhash }}
+          contentFit="cover"
+          transition={1000}
+        />
+        <View style={{ paddingHorizontal: 15 }}>
+          <Title title="Shop By Category" btnText="See All"></Title>
+          {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {categories.map((category) => (
             <Category key={category.id} {...category} />
           ))}
         </ScrollView> */}
-              {/* Flat list */}
-              <FlashList
-                data={categories}
-                renderItem={({ item }) => (
-                  <Category {...item} select={select} onSelect={handleSelect} />
-                )}
-                keyExtractor={(item) => item.id.toString()}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{ paddingVertical: 10 }}
-                extraData={select} // if select is changed,rerender items (for active category) .or  index state is changed and if select is not changed, items will not rerender.
-              />
+          {/* Flat list */}
+          <FlashList
+            data={categories}
+            renderItem={({ item }) => (
+              <Category {...item} select={select} onSelect={handleSelect} />
+            )}
+            keyExtractor={(item) => item.id.toString()}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ paddingVertical: 10 }}
+            extraData={select} // if select is changed,rerender items (for active category) .or  index state is changed and if select is not changed, items will not rerender.
+          />
 
-              <Title title="Recommended For You" btnText="See All"></Title>
+          <Title title="Recommended For You" btnText="See All"></Title>
+        </View>
+
+        <FlashList
+          data={products}
+          renderItem={({ item }) => <Product {...item} itemWidth={itemWidth} />}
+          numColumns={numColumns}
+          keyExtractor={(item) => item.id.toString()}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 15, paddingBottom: 20 }}
+          // columnWrapperStyle={{ paddingHorizontal: 15, paddingBottom: 20 }} //cannot use columnWrapperStyle with  FlashList
+          ListFooterComponent={() => (
+            <View style={{ height: 150 }}>
+              <Pressable style={styles.button}>
+                <Text style={styles.btnText}>Explore more</Text>
+              </Pressable>
             </View>
-          </>
-        )}
-        data={products}
-        renderItem={({ item }) => <Product {...item} itemWidth={itemWidth} />}
-        numColumns={numColumns}
-        keyExtractor={(item) => item.id.toString()}
-        showsVerticalScrollIndicator={false}
-        columnWrapperStyle={{ paddingHorizontal: 15, paddingBottom: 20 }}
-        // contentContainerStyle={{ paddingVertical: 10 }}
-      />
+          )}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -110,5 +116,17 @@ const styles = StyleSheet.create({
   banner: {
     width: "100%",
     aspectRatio: 20 / 9,
+  },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#007618",
+    padding: 10,
+    marginTop: 10,
+    marginHorizontal: "auto",
+    borderRadius: 5,
+  },
+  btnText: {
+    color: "white",
+    fontWeight: "500",
   },
 });
