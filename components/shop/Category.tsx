@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     gap: 7,
+    marginRight: 30,
   },
 
   image: { width: 56, height: 56 },

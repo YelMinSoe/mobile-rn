@@ -10,7 +10,6 @@ const Title = ({ title, btnText }: TitleProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
-
       <Pressable>
         <Text style={styles.btnText}> {btnText} </Text>
       </Pressable>
