@@ -39,6 +39,19 @@ const Product = ({
           color="#E66F2D"
         />
       </Pressable>
+      <View style={styles.rowContainer}>
+        <Text style={styles.brand}> {brand} </Text>
+        <MaterialIcons name="star-border" size={24} color="orange" />
+        <Text style={styles.star}> {star} </Text>
+        <Text style={styles.quantity}> {quantity} </Text>
+      </View>
+      <Text style={styles.title} numberOfLines={1}>
+        {title}
+      </Text>
+      <View style={[styles.rowContainer, { marginTop: 4 }]}>
+        <Text style={styles.price}>${price.toFixed(2)} </Text>
+        <Text style={styles.discount}>${discount.toFixed(2)} </Text>
+      </View>
     </Pressable>
   );
 };
@@ -65,5 +78,36 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 10,
     right: 10,
+  },
+  rowContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 9,
+  },
+  brand: {
+    fontWeight: "600",
+    marginRight: 7,
+  },
+  star: {
+    fontSize: 13,
+    fontWeight: "200",
+    marginHorizontal: 7,
+  },
+  quantity: {
+    color: "gray",
+  },
+  title: {
+    marginTop: 5,
+    fontWeight: "200",
+  },
+  price: {
+    color: "#007618",
+    fontSize: 15,
+    fontWeight: "500",
+    marginRight: 7,
+  },
+  discount: {
+    color: "gray",
+    textDecorationLine: "line-through",
   },
 });
