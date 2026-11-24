@@ -4,12 +4,9 @@ import React from "react";
 import { ProductTypes } from "@/types";
 import { Image } from "expo-image";
 import { MaterialIcons } from "@expo/vector-icons";
-import { colors } from "../../data/index";
 
 // types
-interface ProductProps extends ProductTypes {
-  itemWidth: number;
-}
+interface ProductProps extends ProductTypes {}
 
 const blurhash =
   "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
@@ -24,10 +21,9 @@ const Product = ({
   discount,
   image,
   users,
-  itemWidth,
 }: ProductProps) => {
   return (
-    <Pressable style={[styles.container, { width: itemWidth }]}>
+    <Pressable style={styles.container}>
       <Image
         style={styles.image}
         source={image}
@@ -53,7 +49,9 @@ const Product = ({
       </Text>
       <View style={[styles.rowContainer, { marginTop: 4 }]}>
         <Text style={styles.price}>${price.toFixed(2)} </Text>
-        <Text style={styles.discount}>${discount.toFixed(2)} </Text>
+        {discount > 0 && (
+          <Text style={styles.discount}>${discount.toFixed(2)} </Text>
+        )}
       </View>
     </Pressable>
   );

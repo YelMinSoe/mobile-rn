@@ -78,7 +78,7 @@ export default function Index() {
 
         <FlashList
           data={products}
-          renderItem={({ item }) => <Product {...item} itemWidth={itemWidth} />}
+          renderItem={({ item }) => <Product {...item} />}
           numColumns={numColumns}
           keyExtractor={(item) => item.id.toString()}
           showsVerticalScrollIndicator={false}
